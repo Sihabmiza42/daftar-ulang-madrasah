@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formulir Daftar Ulang Siswa Madrasah 2025/2026</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script>
+    async function handleSubmit(event) {
+      event.preventDefault();
+      const form = event.target;
+      const data = new FormData(form);
+
+      const formDataObj = {};
+      data.forEach((value, key) => {
+        formDataObj[key] = value;
+      });
+
+      console.log("Data Form:", formDataObj);
+      fetch("https://script.google.com/macros/s/AKfycbzo2uugokpdZcAhfrTZhfhii11NkZKyX2c9fWu4kakCLshNo2To-S94LcANFmExqiLQ_Q/exec", {
+        method: "POST",
+        body: JSON.stringify(formDataObj),
+        headers: { "Content-Type": "application/json" }
+      })
+      .then(res => res.json())
+      .then(response => {
+        if(response.success) alert("Pendaftaran berhasil!");
+        else alert("Terjadi kesalahan!");
+      })
+      .catch(err => alert("Gagal mengirim data."));
+      form.reset();
+    }
+  </script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <div class="min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white shadow-2xl rounded-xl p-6 w-full max-w-4xl">
+      <h1 class="text-2xl font-bold text-center mb-6 text-green-700">
+        Formulir Daftar Ulang Siswa Madrasah<br>
+        <span class="text-sm text-gray-500">Tahun Ajaran 2025/2026</span>
+      </h1>
+      <form id="daftarUlangForm" onsubmit="handleSubmit(event)" class="space-y-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <input type="hidden" name="id" value="0" />
+          <input name="nis" placeholder="NIS" required class="border px-3 py-2 rounded-lg" />
+          <input name="nisn" placeholder="NISN" required class="border px-3 py-2 rounded-lg" />
+          <input name="nik" placeholder="NIK" required class="border px-3 py-2 rounded-lg" />
+          <input name="nama_lengkap" placeholder="Nama Lengkap" required class="border px-3 py-2 rounded-lg" />
+          <select name="jenis_kelamin" required class="border px-3 py-2 rounded-lg">
+            <option value="">Jenis Kelamin</option>
+            <option value="Laki-laki">Laki-laki</option>
+            <option value="Perempuan">Perempuan</option>
+          </select>
+          <input name="tempat_lahir" placeholder="Tempat Lahir" required class="border px-3 py-2 rounded-lg" />
+          <input type="date" name="tanggal_lahir" required class="border px-3 py-2 rounded-lg" />
+          <select name="keterangan_yatim" required class="border px-3 py-2 rounded-lg">
+            <option value="">Yatim/Piatu</option>
+            <option value="Yatim">Yatim</option>
+            <option value="Piatu">Piatu</option>
+            <option value="Yatim Piatu">Yatim Piatu</option>
+            <option value="Tidak">Tidak</option>
+          </select>
+          <select name="status_siswa" required class="border px-3 py-2 rounded-lg">
+            <option value="">Status Siswa</option>
+            <option value="Aktif">Aktif</option>
+            <option value="Nonaktif">Nonaktif</option>
+          </select>
+          <input type="number" name="anak_ke" placeholder="Anak Ke" required class="border px-3 py-2 rounded-lg" />
+          <input type="number" name="jumlah_saudara" placeholder="Jumlah Saudara" required class="border px-3 py-2 rounded-lg" />
+          <select name="status_anak" required class="border px-3 py-2 rounded-lg">
+            <option value="">Status Anak</option>
+            <option value="Kandung">Kandung</option>
+            <option value="Tiri">Tiri</option>
+            <option value="Angkat">Angkat</option>
+          </select>
+          <input type="text" name="tahun_masuk" placeholder="Tahun Masuk" required class="border px-3 py-2 rounded-lg" />
+          <input name="nomor_urut" placeholder="Nomor Urut" required class="border px-3 py-2 rounded-lg" />
+          <input name="nama_ayah" placeholder="Nama Ayah" class="border px-3 py-2 rounded-lg" />
+          <input name="pendidikan_ayah" placeholder="Pendidikan Ayah" class="border px-3 py-2 rounded-lg" />
+          <input name="pekerjaan_ayah" placeholder="Pekerjaan Ayah" class="border px-3 py-2 rounded-lg" />
+          <input name="nama_ibu" placeholder="Nama Ibu" class="border px-3 py-2 rounded-lg" />
+          <input name="pendidikan_ibu" placeholder="Pendidikan Ibu" class="border px-3 py-2 rounded-lg" />
+          <input name="pekerjaan_ibu" placeholder="Pekerjaan Ibu" class="border px-3 py-2 rounded-lg" />
+          <input name="nama_wali" placeholder="Nama Wali" class="border px-3 py-2 rounded-lg" />
+          <input name="pendidikan_wali" placeholder="Pendidikan Wali" class="border px-3 py-2 rounded-lg" />
+          <input name="pekerjaan_wali" placeholder="Pekerjaan Wali" class="border px-3 py-2 rounded-lg" />
+          <input name="jalan" placeholder="Jalan" class="border px-3 py-2 rounded-lg" />
+          <input name="rt" placeholder="RT" class="border px-3 py-2 rounded-lg" />
+          <input name="rw" placeholder="RW" class="border px-3 py-2 rounded-lg" />
+          <input name="kelurahan" placeholder="Kelurahan" class="border px-3 py-2 rounded-lg" />
+          <input name="kecamatan" placeholder="Kecamatan" class="border px-3 py-2 rounded-lg" />
+          <input name="kab_kota" placeholder="Kab/Kota" class="border px-3 py-2 rounded-lg" />
+          <input name="provinsi" placeholder="Provinsi" class="border px-3 py-2 rounded-lg" />
+          <input name="kode_pos" placeholder="Kode Pos" class="border px-3 py-2 rounded-lg" />
+          <input name="no_telepon" placeholder="No. Telepon" class="border px-3 py-2 rounded-lg" />
+          <input name="kelas_sekarang" placeholder="Kelas Sekarang" class="border px-3 py-2 rounded-lg" />
+          <input name="rombel_sekarang" placeholder="Rombel Sekarang" class="border px-3 py-2 rounded-lg" />
+          <input type="datetime-local" name="created_at" class="border px-3 py-2 rounded-lg" />
+        </div>
+        <div class="text-center pt-4">
+          <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-xl shadow-md transition duration-300">Kirim</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
